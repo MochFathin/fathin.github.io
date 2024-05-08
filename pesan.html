@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pemesanan Barang</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <a href="coba.html" class="btn btn-primary">Beranda</a>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center mb-4">Formulir Pemesanan Barang</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="nama">Nama:</label>
+                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="alamat">Alamat Pengiriman:</label>
+                    <textarea class="form-control" id="alamat" rows="3" placeholder="Masukkan alamat pengiriman Anda"
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="produk">Produk yang Dipesan:</label>
+                    <select class="form-control" id="produk" required>
+                        <option value="">Pilih produk</option>
+                        <option value="NAH PROJECT" data-price="412000">NAH PROJECT</option>
+                        <option value="COMPASS" data-price="500450">COMPASS</option>
+                        <option value="HANZ X NAZ" data-price="175600">HANZ X NAZ</option>
+                        <option value="AEROSTREET" data-price="270000">AEROSTREET</option>
+                        <option value="GEOFF MAX" data-price="452900">GEOFF MAX</option>
+                        <option value="VENTELA" data-price="217710">VENTELA</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="jumlah">Jumlah:</label>
+                    <input type="number" class="form-control" id="jumlah" min="1" placeholder="Masukkan jumlah barang"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="total">Total Harga:</label>
+                    <input type="text" class="form-control" id="total" readonly>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Pesan Sekarang</button>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function (event) {
+            event.preventDefault(); 
+
+         
+            var nama = document.getElementById('nama').value;
+            var alamat = document.getElementById('alamat').value;
+            var produk = document.getElementById('produk').value;
+            var jumlah = document.getElementById('jumlah').value;
+            var harga = document.getElementById('produk').options[document.getElementById('produk').selectedIndex].getAttribute('data-price');
+            
+     
+            var totalHarga = parseInt(harga) * parseInt(jumlah);
+
+            alert('Terima kasih atas pesanan Anda!\n\nNama: ' + nama + '\nAlamat: ' + alamat + '\nProduk: ' + produk + '\nJumlah: ' + jumlah + '\nTotal Harga: Rp ' + totalHarga);
+
+      
+            document.getElementById('total').value = totalHarga.toLocaleString();
+            
+ 
+            document.getElementById('orderForm').reset();
+        });
+    </script>
+</body>
+
+</html>
